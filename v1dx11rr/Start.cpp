@@ -194,7 +194,6 @@ void Game::start() {
 	hourR.setPosition(-8, 0, 20);
 	hourL.setPosition(-12, 0, 20);
 
-
 #pragma endregion
 
 

@@ -244,6 +244,7 @@ string Game::getAssetNameByEntityType(EntityType type) {
 		break;
 	case SHOP_1:
 		result = "sklep-wizualiacja";
+		break;
 	case N_1:
 		result = "1";
 		break;

@@ -58,6 +58,7 @@ enum EntityType {
 	ALMACEN_1,
 	ALMACEN_2,
 	EXPLORABLE_1,
+	SHOP_1,
 	N_1,
 	N_2,
 	N_3,
