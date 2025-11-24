@@ -43,21 +43,29 @@ void Game::start() {
 	}
 
 
+
 	//CASAS 
 	GameObject& caas = createObject("Casa", CASA_1);
 	caas.setPosition2D(100, 60);
 	caas.scale = Vector3(3, 3, 3);
 	caas.rotation = Vector3(0, 90, 0);
+	GameObject& caas2 = createObject("Casa3", CASA_3);
+	caas2.setPosition2D(130, -50);
+	caas2.scale = Vector3(0.03, 0.03, 0.03);
 	GameObject& caas1 = createObject("Casa2", CASA_2);
 	caas1.setPosition2D(50, 70);
 	caas1.scale = Vector3(1.5, 1.5, .5);
 	caas1.rotation = Vector3(0, 90, 0);
+
+
 
 	//TIONDA
 	GameObject& tiend = createObject("GasShop", SHOP_1);
 	tiend.setPosition2D(170, 60);
 	tiend.scale = Vector3(3, 3, 3);
 	tiend.rotation = Vector3(0, 90, 0);
+
+
 
 	//ALMACENES
 	GameObject& alma2 = createObject("Almacen2", ALMACEN_2);
@@ -67,11 +75,16 @@ void Game::start() {
 	alma.setPosition2D(-220, 200);
 	alma.scale = Vector3(7, 5, 7);
 
+
+
 	//EXPLORABLE
 	GameObject& explo = createObject("Explorable1", EXPLORABLE_1); 
 	explo.setPosition2D(200, -200);
 	explo.scale = Vector3(5, 5, 5);
 	explo.rotation = Vector3(0, 180, 0);
+	GameObject& explo2 = createObject("Explorable2", EXPLORABLE_2);
+	explo2.setPosition2D(-50, 0);
+	explo2.scale = Vector3(0.5, 0.5, 0.5);
 
 	//señales de tráfico y cosas de la calle
 	GameObject& sinal1 = createObject("Deadend", DEAD_SIG);	//no sé si deberíamos poner ids distintos, por si acaso lo dejé igual
@@ -99,10 +112,6 @@ void Game::start() {
 
 
 #pragma endregion
-
-	
-
-
 
 #pragma region BILLBOARDS
 	//ARBOLES
@@ -176,15 +185,28 @@ void Game::start() {
 	//lo pens� para decorar la casa o a donde hay que entregar los muebles y que se vea a quien le entregamos los muebles
 	GameBillboard& esposo = createBillboard("Esp", MARRIDO);
 	GameBillboard& esposa = createBillboard("Espa", MARIDA);
-	esposo.setPosition2D(20, 20);
-	esposa.setPosition2D(25, 25);
+	esposo.setPosition2D(130, -10);
+	esposa.setPosition2D(130, -15);
 	esposo.size = 3;
 	esposa.size = 3;
+
+	//personas que busco animar
+	GameBillboard& persona1 = createBillboard("Per1", PERSONA1);
+	GameBillboard& persona2 = createBillboard("Per2", PERSONA2);
+	GameBillboard& persona3 = createBillboard("Per3", PERSONA3);
+	GameBillboard& persona4 = createBillboard("Per4", PERSONA4);
+	persona1.setPosition2D(30, -240);
+	persona2.setPosition2D(-50, 240);
+	persona3.setPosition2D(30, 50);
+	persona4.setPosition2D(-30, 15);
+	persona1.size = 3;
+	persona2.size = 3;
+	persona3.size = 3;
+	persona4.size = 3;
 #pragma endregion
 
-#pragma region MODELOS
 
-#pragma endregion
+
 
 
 

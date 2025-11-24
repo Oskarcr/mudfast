@@ -19,6 +19,42 @@ void Game::update() {
 		carromoviendose.rotation.y -= 180;
 	}
 
+	//movimiento para billboards
+	GameBillboard& person1 = getBillboardById("Per1");
+	float signo2 = person1.getAttribute("andar") == 1 ? -1 : 1;
+	Vector2 pos2d2 = person1.getPosition2D();
+	pos2d2.y += (0.1f * signo2);
+	person1.setPosition2D(pos2d2);
+	if (pos2d2.y > -20) {
+		person1.setAttribute("andar", 1);
+	}
+	if (pos2d2.y < -240) {
+		person1.setAttribute("andar", 0);
+	}
+	GameBillboard& person2 = getBillboardById("Per2");
+	float signo3 = person2.getAttribute("andar") == 1 ? -1 : 1;
+	Vector2 pos3d2 = person2.getPosition2D();
+	pos3d2.x += (0.05f * signo3);
+	person2.setPosition2D(pos3d2);
+	if (pos3d2.x > -50) {
+		person2.setAttribute("andar", 1);
+	}
+	if (pos3d2.x < -150) {
+		person2.setAttribute("andar", 0);
+	}
+	GameBillboard& person3 = getBillboardById("Per3");
+	float signo4 = person3.getAttribute("andar") == 1 ? -1 : 1;
+	Vector2 pos4d2 = person3.getPosition2D();
+	pos4d2.x += (0.05f * signo4);
+	person3.setPosition2D(pos4d2);
+	if (pos4d2.x > 30) {
+		person3.setAttribute("andar", 1);
+	}
+	if (pos4d2.x < 150) {
+		person3.setAttribute("andar", 0);
+	}
+
+
 
 
 #pragma region Comentarios de pruebas

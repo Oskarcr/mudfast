@@ -53,12 +53,18 @@ enum EntityType {
 	MARIDA,
 	CASA_1,
 	CASA_2,
+	CASA_3,
 	DEAD_SIG,
 	STREET_L,
 	ALMACEN_1,
 	ALMACEN_2,
 	EXPLORABLE_1,
-	SHOP_1
+	EXPLORABLE_2,
+	SHOP_1,
+	PERSONA1,
+	PERSONA2,
+	PERSONA3,
+	PERSONA4
 };
 
 using namespace chrono;

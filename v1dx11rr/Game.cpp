@@ -227,6 +227,9 @@ string Game::getAssetNameByEntityType(EntityType type) {
 	case CASA_2:
 		result = "unknown_Base_Color";
 		break;
+	case CASA_3:
+		result = "farmhouse2_diffuse";
+		break;
 	case DEAD_SIG:
 		result = "lambert1_Base_color";
 		break;
@@ -242,8 +245,23 @@ string Game::getAssetNameByEntityType(EntityType type) {
 	case EXPLORABLE_1:
 		result = "Warehouse_Warehouse_AlbedoTransparency";
 		break;
+	case EXPLORABLE_2:
+		result = "sh_aoAlbedo1";
+		break;
 	case SHOP_1:
 		result = "sklep-wizualiacja";
+		break;
+	case PERSONA1:
+		result = "Human1";
+		break;
+	case PERSONA2:
+		result = "Human2";
+		break;
+	case PERSONA3:
+		result = "Human3";
+		break;
+	case PERSONA4:
+		result = "Human4";
 		break;
 	}
 	return result;
