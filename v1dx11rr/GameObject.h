@@ -31,4 +31,11 @@ public:
 
 	// Establece una misma escala en los tres ejes.
 	GameObject& setScale(float _scale);
+
+	// Desplaza la entidad instantaneamente las unidades indicadas tomando en cuenta la altura del terreno.
+	GameObject& translate2D(Vector2 offset2D);
+
+	// Desplaza la entidad instantaneamente en una direccion mediante su speed tomando en cuenta la altura del terreno.
+	// Se desplazara "speed" unidades hacia "direction".
+	GameObject& move2D(Vector2 direction);
 };

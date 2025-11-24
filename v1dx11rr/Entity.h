@@ -57,6 +57,7 @@ public:
 	// Desplaza la entidad instantaneamente las unidades indicadas en el eje x.
 	Entity& translateZ(float offsetZ);
 
-	// Desplaza la entidad en una direccion mediante su speed.
+	// Desplaza la entidad instantaneamente en una direccion mediante su speed.
+	// Se desplazara "speed" unidades hacia "direction".
 	Entity& move(Vector3 direction);
 };

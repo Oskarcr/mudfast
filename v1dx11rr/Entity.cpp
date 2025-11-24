@@ -59,6 +59,8 @@ Entity& Entity::translateZ(float offsetZ) {
 }
 
 Entity& Entity::move(Vector3 direction) {
-
+	direction = direction.normalize();
+	Vector3 offset = direction * speed;
+	translate(offset);
 	return *this;
 }

@@ -87,3 +87,16 @@ GameBillboard& GameBillboard::setPosition2D(Vector2 _position) {
 GameBillboard& GameBillboard::setPosition2D(float _x, float _y) {
 	return setPosition2D(Vector2(_x, _y));
 }
+
+GameBillboard& GameBillboard::translate2D(Vector2 offset2D) {
+	Vector2 newPosition = offset2D + getPosition2D();
+	setPosition2D(newPosition);
+	return *this;
+}
+
+GameBillboard& GameBillboard::move2D(Vector2 direction2D) {
+	direction2D = direction2D.normalize();
+	Vector2 offset2D = direction2D * speed;
+	translate2D(offset2D);
+	return *this;
+}

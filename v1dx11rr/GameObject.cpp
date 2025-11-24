@@ -53,3 +53,16 @@ GameObject& GameObject::setScale(float _scale) {
 	scale = Vector3(_scale, _scale, _scale);
 	return *this;
 }
+
+GameObject& GameObject::translate2D(Vector2 offset2D) {
+	Vector2 newPosition = offset2D + getPosition2D();
+	setPosition2D(newPosition);
+	return *this;
+}
+
+GameObject& GameObject::move2D(Vector2 direction2D) {
+	direction2D = direction2D.normalize();
+	Vector2 offset2D = direction2D * speed;
+	translate2D(offset2D);
+	return *this;
+}

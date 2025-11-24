@@ -64,7 +64,7 @@ Vector2 Vector2::operator/(Vector2 vector)
 
 float Vector2::magnitude() const
 {
-    return sqrt(pow(x, 2) + pow(y, 2));
+    return sqrtf(x * x + y * y);
 }
 
 Vector2 Vector2::pointOfDirection(float angle, float hypot)
@@ -157,7 +157,7 @@ Vector3 Vector3::operator/(Vector3 vector)
 
 float Vector3::magnitude() const
 {
-    return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+    return sqrtf(x * x + y * y + z * z);
 }
 
 Vector3 Vector3::cross(Vector3 vector) {
@@ -183,8 +183,8 @@ Vector3 Vector3::rotateY(float angle) {
 }
 
 Vector3 Vector3::normalize() const {
-    float length = sqrtf(x * x + y * y + z * z);
-    if (length == 0) return Vector3(0, 0);
+    float length = magnitude();
+    if (length == 0) return Vector3();
     return Vector3(x / length, y / length, z / length);
 }
 

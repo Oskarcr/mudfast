@@ -45,4 +45,11 @@ public:
 
 	// Devuelve el mismo GameBillboard y establece la posicion en 2D de la Entity tomando en cuenta la altura del terreno.
 	GameBillboard& setPosition2D(float _x, float _y);
+
+	// Desplaza la entidad instantaneamente las unidades indicadas tomando en cuenta la altura del terreno.
+	GameBillboard& translate2D(Vector2 offset2D);
+
+	// Desplaza la entidad instantaneamente en una direccion mediante su speed tomando en cuenta la altura del terreno.
+	// Se desplazara "speed" unidades hacia "direction".
+	GameBillboard& move2D(Vector2 direction);
 };
