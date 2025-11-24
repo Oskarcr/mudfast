@@ -158,6 +158,9 @@ string Game::getAssetNameByEntityType(EntityType type) {
 	case OBJ_CAR_DEFAULT:
 		result = "Car";
 		break;
+	case OBJ_POLICE_CAR:
+		result = "Police";
+		break;
 	case OBJ_CAR_VAN:
 		result = "Van";
 		break;
@@ -208,6 +211,9 @@ string Game::getAssetNameByEntityType(EntityType type) {
 		break;
 	case A_3:
 		result = "tree3";
+		break;
+	case BILL_BUSH:
+		result = "Bush";
 		break;
 	case MARRIDO:
 		result = "Husband";
