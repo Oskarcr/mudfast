@@ -157,6 +157,9 @@ string Game::getAssetNameByEntityType(EntityType type) {
 	case OBJ_CAR_DEFAULT:
 		result = "Car";
 		break;
+	case OBJ_POLICE_CAR:
+		result = "Police";
+		break;
 	case OBJ_CAR_VAN:
 		result = "Van";
 		break;
@@ -208,16 +211,70 @@ string Game::getAssetNameByEntityType(EntityType type) {
 	case A_3:
 		result = "tree3";
 		break;
+	case BILL_BUSH:
+		result = "Bush";
+		break;
 	case MARRIDO:
 		result = "Husband";
 		break;
 	case MARIDA:
 		result = "Sabrina";
 		break;
-	//case C_UNO: //CASA
-	//	result = "";
-	//	break;
-	}
+	case CASA_1: //CASA
+		result = "House1";
+		break;
+	case CASA_2:
+		result = "unknown_Base_Color";
+		break;
+	case DEAD_SIG:
+		result = "lambert1_Base_color";
+		break;
+	case STREET_L:
+		result = "streetlight";
+		break;
+	case ALMACEN_1:
+		result = "Warehouse_2_DefaultMaterial_AlbedoTranspar";
+		break;
+	case ALMACEN_2:
+		result = "timage01";
+		break;
+	case EXPLORABLE_1:
+		result = "Warehouse_Warehouse_AlbedoTransparency";
+		break;
+	case SHOP_1:
+		result = "sklep-wizualiacja";
+		break;
+	case N_1:
+		result = "1";
+		break;
+	case N_2:
+		result = "2";
+		break;
+	case N_3:
+		result = "3";
+		break;
+	case N_4:
+		result = "4";
+		break;
+	case N_5:
+		result = "5";
+		break;
+	case N_6:
+		result = "6";
+		break;
+	case N_7:
+		result = "7";
+		break;
+	case N_8:
+		result = "8";
+		break;
+	case N_9:
+		result = "9";
+		break;
+	case N_0:
+		result = "0";
+		break;
+	}	
 	return result;
 }
 

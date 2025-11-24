@@ -89,29 +89,30 @@ public:
 		swapChain = 0;
 		backBufferTarget = 0;
 		IniciaD3D(hWnd);
-
+		
 		//imagen de victoria
 		hudVictory = new StaticBillboard(L"Assets/HUD/Slime.png", d3dDevice, d3dContext, 100.0f);
 
 
 
-		izqder = 0;
+		/*izqder = 0;
 		arriaba = 0;
-		billCargaFuego();
+		billCargaFuego();*/
 		camara = new Camara(D3DXVECTOR3(0,80,6), D3DXVECTOR3(0,80,0), D3DXVECTOR3(0,1,0), Ancho, Alto);
 		terreno = new TerrenoRR(600, 600, d3dDevice, d3dContext);
 		skydome = new SkyDome(32, 32, 100.0f, &d3dDevice, &d3dContext, L"SkyDome.png");
-		billboard = new BillboardRR(L"Assets/Billboards/fuego-anim.png",L"Assets/Billboards/fuego-anim-normal.png", d3dDevice, d3dContext, 5);
+		// billboard = new BillboardRR(L"Assets/Billboards/fuego-anim.png",L"Assets/Billboards/fuego-anim-normal.png", d3dDevice, d3dContext, 5);
 		//
 		game.setContext(d3dContext);
 		game.setDevice(d3dDevice);
 		game.setLand(terreno);
 		game.setCamera(camara);
-		if(!game.testMode) game.start();
+		if (!game.testMode) game.start();
+		else game.test();
 
 		// model = new ModeloRR(d3dDevice, d3dContext, "Assets/Cofre/Cofre.obj", L"Assets/Cofre/Cofre-color.png", L"Assets/Cofre/Cofre-spec.png", 0, 0);
 		
-		string modelsName[10] = {
+		/*string modelsName[10] = {
 			"Sofa", "Car", "Bush", "DiningTable", "Mattress",
 			"Van", "FridgeCocaCola", "BoxB", "BoxM", "BoxS"
 		};
@@ -168,7 +169,7 @@ public:
 			}
 
 			animMgr.addModel(model, anim);
-		}
+		}*/
 	}
 
 	~DXRR()
@@ -363,16 +364,8 @@ public:
 
 		terreno->Draw(camara->vista, camara->proyeccion);
 		//TurnOnAlphaBlending();
-		billboard->Draw(camara->vista, camara->proyeccion, camara->posCam,
-			-11, -78, 4, 5, *uv1, *uv2, *uv3, *uv4);
-
-		//TurnOffAlphaBlending();
-		// model->Draw(camara->vista, camara->proyeccion, terreno->Superficie(100, 20), camara->posCam, 10.0f, 0, 'A', 1);
-
-		//////////////// DIBUJADO DE LOS MODELOS /////////////////
-		//for (int i = 0; i < models.size(); i++) {
-		//	models[i]->Draw(camara->vista, camara->proyeccion, terreno->Superficie(100, 20), camara->posCam, 10.0f, 0, 'A', 1);
-		//}
+		//billboard->Draw(camara->vista, camara->proyeccion, camara->posCam,
+		//	-11, -78, 4, 5, *uv1, *uv2, *uv3, *uv4);
 
 		game.render();
 
@@ -410,21 +403,6 @@ public:
 		char keyboardData[256];
 		m_pKeyboardDevice->GetDeviceState(sizeof(keyboardData), (void*)&keyboardData);
 		game.input(keyboardData);
-		/*if (keyboardData[DIK_W] & 0x80) {
-			offset.y += game.settings.speedFront;
-		}
-		if (keyboardData[DIK_S] & 0x80) {
-			offset.y -= game.settings.speedBack;
-		}
-		if (keyboardData[DIK_D] & 0x80) {
-			offset.x += game.settings.speedLeftRight;
-		}
-		if (keyboardData[DIK_A] & 0x80) {
-			offset.x -= game.settings.speedLeftRight;
-		}
-		const float base_speed = (!(keyboardData[DIK_LSHIFT] & 0x80) ? 1 : game.settings.sprintMultiplier);
-		offset = (offset * game.deltaTime).normalize();
-		game.camera.translate2D(offset * base_speed);*/
 
 		// Update
 		if (!game.testMode) game.update();

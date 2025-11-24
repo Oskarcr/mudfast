@@ -92,6 +92,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
     // Set the position of the window to the top left corner.
     posX = posY = 0;
 
+    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+
     //RECT wr = {0, 0, SCREEN_X, SCREEN_Y};
     //AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);
     hWnd = CreateWindowEx(WS_EX_APPWINDOW,
@@ -100,15 +103,23 @@ int WINAPI WinMain(HINSTANCE hInstance,
                           WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP,
         posX,
         posY,
-        (game.debugMode ? 100 : SCREEN_X),
-        (game.debugMode ? 100 : SCREEN_Y),
+        (game.debugMode ? 100 : screenWidth),
+        (game.debugMode ? 100 : (int)((float)screenWidth * (3.f / 4.f))), // 3/4 de aspect ratio
                           NULL,
                           NULL,
                           hInstance,
                           NULL);
 
     ShowWindow(hWnd, nCmdShow);
-	dxrr = new DXRR(hWnd, 800, 600);
+
+    RECT rect;
+    GetWindowRect(hWnd, &rect);
+    int windowHeight = rect.bottom - rect.top;
+    int newY = (screenHeight - windowHeight) / 2;
+    int newX = rect.left;
+    SetWindowPos(hWnd, NULL, newX, newY, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+
+	dxrr = new DXRR(hWnd, screenWidth, screenHeight);
 	dxrr->velFB=0;
     gamePad = new GamePadRR(1);
 

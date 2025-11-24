@@ -138,6 +138,9 @@
     <ClCompile Include="Input.cpp">
       <Filter>Archivos de juego</Filter>
     </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Archivos de juego</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Billboard.hlsl">

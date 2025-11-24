@@ -10,7 +10,7 @@ private:
 	TerrenoRR* land = nullptr;
 public:
 	// El desplazamiento en los tres ejes de la camara.
-	Vector3 offset = Vector3(0, 10, 0);
+	Vector3 offset = Vector3(0, 0.04f, 0);
 
 	// La rotacion de la camara
 	Vector2 rotation = Vector2(0, 0);

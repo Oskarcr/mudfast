@@ -29,6 +29,7 @@ class GameCamera;
 
 enum EntityType {
 	OBJ_CAR_DEFAULT,
+	OBJ_POLICE_CAR,
 	OBJ_CAR_VAN,
 	OBJ_BOX_SMALL,
 	OBJ_BOX_MEDIUM,
@@ -43,12 +44,30 @@ enum EntityType {
 	BILL_FIRE,
 	BILL_EXPLOSION,
 	BILL_CAT_CHAD,
-	A_1,			//ÁRBOLES
+	A_1,			//ï¿½RBOLES
 	A_2,
 	A_3,
+	BILL_BUSH,
 	MARRIDO,
-	MARIDA/*,
-	C_UNO*/
+	MARIDA,
+	CASA_1,
+	CASA_2,
+	DEAD_SIG,
+	STREET_L,
+	ALMACEN_1,
+	ALMACEN_2,
+	EXPLORABLE_1,
+	SHOP_1,
+	N_1,
+	N_2,
+	N_3,
+	N_4,
+	N_5,
+	N_6,
+	N_7,
+	N_8,
+	N_9,
+	N_0,
 };
 
 using namespace chrono;
@@ -75,12 +94,12 @@ public:
 
 		// Movimiento x y z
 		float sprintMultiplier = 1.5f;
-		float speedFront = 42;
-		float speedLeftRight = 36;
-		float speedBack = 30;
+		float speedFront = 32;
+		float speedLeftRight = 28;
+		float speedBack = 24;
 
 		// Movimiento del mouse
-		float mouseSensitivity = 0.026f;
+		float mouseSensitivity = 0.028f;
 		float mouseDeltaThreshold = 10.0f;
 		float maxAngleX = 40.0f;
 		float offsetAngleX = 10.0f;
@@ -158,9 +177,14 @@ public:
 	// Se llama cuando el programa esta preparado para que inicie.
 	void start();
 
+	// Se llama cuando inicia el programa en modo test.
+	void test();
+
 	// Se llama despues de cada render del programa
 	void update();
 
+	// Se llama despues de render y antes de update.
+	// Es para el input.
 	void input(char* keyboardData);
 
 	// Se llama cada render del programa
