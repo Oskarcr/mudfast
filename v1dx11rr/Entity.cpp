@@ -36,3 +36,29 @@ bool Entity::hasAttribute(string name) {
 	auto it = attributes.find(name);
 	return it != attributes.end();
 }
+
+Entity& Entity::translate(Vector3 offset) {
+	Vector3 newPosition = offset + position;
+	position = newPosition;
+	return *this;
+}
+
+Entity& Entity::translateX(float offsetX) {
+	position.x += offsetX;
+	return *this;
+}
+
+Entity& Entity::translateY(float offsetY) {
+	position.y += offsetY;
+	return *this;
+}
+
+Entity& Entity::translateZ(float offsetZ) {
+	position.z += offsetZ;
+	return *this;
+}
+
+Entity& Entity::move(Vector3 direction) {
+
+	return *this;
+}

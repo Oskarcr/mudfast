@@ -1,5 +1,15 @@
 #include "Game.h"
 
+
+
+Game::Game() {
+	previousTime = steady_clock::now();
+}
+
+Game::~Game() {
+
+}
+
 Vector2 Game::getMousePosition() {
 	POINT cursor;
 	GetCursorPos(&cursor);
@@ -117,7 +127,7 @@ void Game::render() {
 }
 
 void Game::updateTime() {
-	currentTime = high_resolution_clock::now();
+	currentTime = steady_clock::now();
 	duration<float> delta = currentTime - previousTime;
 	deltaTime = delta.count();
 	time += deltaTime;

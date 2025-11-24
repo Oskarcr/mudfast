@@ -13,6 +13,9 @@ public:
 	// La posicion en tres ejes de la Entity en el espacio y tiempo.
 	Vector3 position = Vector3(0, 0, 0);
 
+	// La velocidad de la entidad.
+	float speed = 1;
+
 	// Devuelve un Vector2 con las coordenadas (x, z) correspondientes.
 	Vector2 getPosition2D();
 
@@ -41,4 +44,19 @@ public:
 	// Devuelve true si la entidad tiene el atributo especificado.
 	// En caso contrario devuelve false.
 	bool hasAttribute(string name);
+
+	// Desplaza la entidad instantaneamente las unidades indicadas.
+	Entity& translate(Vector3 offset);
+
+	// Desplaza la entidad instantaneamente las unidades indicadas en el eje x.
+	Entity& translateX(float offsetX);
+
+	// Desplaza la entidad instantaneamente las unidades indicadas en el eje x.
+	Entity& translateY(float offsetY);
+
+	// Desplaza la entidad instantaneamente las unidades indicadas en el eje x.
+	Entity& translateZ(float offsetZ);
+
+	// Desplaza la entidad en una direccion mediante su speed.
+	Entity& move(Vector3 direction);
 };

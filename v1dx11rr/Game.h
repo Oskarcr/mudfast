@@ -22,6 +22,9 @@ extern Game game;
 #include <functional>
 #include <chrono>
 
+#include <iostream>
+#include <iomanip>
+
 class GameObject;
 class GameBillboard;
 
@@ -53,7 +56,7 @@ using namespace chrono;
 class Game {
 private:
 	steady_clock::time_point previousTime;
-	steady_clock::time_point currentTime = high_resolution_clock::now();
+	steady_clock::time_point currentTime = steady_clock::now();
 
 	ID3D11Device* d3dDevice = nullptr;
 	ID3D11DeviceContext* d3dContext = nullptr;
@@ -100,6 +103,10 @@ public:
 
 	// El reproductor de musica.
 	GamePlayer player = GamePlayer();
+
+
+	Game();
+	~Game();
 
 	// Devuelve un Vector2 con la posicion del mouse (x, y) en
 	// la pantalla entera.
