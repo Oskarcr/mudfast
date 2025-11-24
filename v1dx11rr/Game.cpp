@@ -190,6 +190,24 @@ string Game::getAssetNameByEntityType(EntityType type) {
 	case BILL_CAT_CHAD:
 		result = "gato_chad";
 		break;
+	case A_1:
+		result = "tree1";
+		break;
+	case A_2:
+		result = "tree2";
+		break;
+	case A_3:
+		result = "tree3";
+		break;
+	case MARRIDO:
+		result = "Husband";
+		break;
+	case MARIDA:
+		result = "Sabrina";
+		break;
+	//case C_UNO: //CASA
+	//	result = "";
+	//	break;
 	}
 	return result;
 }
