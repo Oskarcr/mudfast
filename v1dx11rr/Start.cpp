@@ -183,11 +183,13 @@ void Game::start() {
 #pragma endregion
 
 #pragma region UI
-	// Timer
+	// Timer;
+
 	GameBillboard& minuteR = createBillboard("minuteR", N_0);
 	GameBillboard& minuteL = createBillboard("minuteL", N_0);
 	GameBillboard& hourR = createBillboard("hourR", N_7);
 	GameBillboard& hourL = createBillboard("hourL", N_0);
+	minuteR.setAttribute("time", 0);
 
 	minuteR.setPosition(0, 0, 20);
 	minuteL.setPosition(-4, 0, 20);
