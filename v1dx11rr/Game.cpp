@@ -185,6 +185,9 @@ string Game::getAssetNameByEntityType(EntityType type) {
 	case OBJ_TABLE:
 		result = "DiningTable";
 		break;
+	case OBJ_GAS_BOMB:
+		result = "GasBomb";
+		break;
 	case BILL_OBJETIVE:
 		result = "Objetivo";
 		break;

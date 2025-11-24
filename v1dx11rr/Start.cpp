@@ -2,9 +2,47 @@
 
 void Game::start() {
 	// Es como del void Start de unity
+	GameObject& van = createObject("Van", OBJ_CAR_VAN);
+	van.setPosition2D(30, -240);
+
+	GameObject& car = createObject("Car", OBJ_CAR_DEFAULT);
+	car.setPosition2D(-30, 240);
+
+	GameObject& bigBox = createObject("BigBox", OBJ_BOX_BIG);
+	bigBox.setPosition2D(30, -275);
+
+	GameObject& midBox = createObject("MidBox", OBJ_BOX_MEDIUM);
+	midBox.setPosition2D(30, -280);
+
+	GameObject& smallBox = createObject("SmallBox", OBJ_BOX_SMALL);
+	smallBox.setPosition2D(35, -280);
+
+	GameObject& machine = createObject("VendingMachine", OBJ_COCA_COLA_VENDING);
+	machine.setPosition2D(45, -280);
+
+	GameObject& mattress = createObject("Mattress", OBJ_MATRESS);
+	mattress.setPosition2D(50, -275);
+
+	for (int i = 0; i < 20; i++) {
+		GameObject& bush = createObject("Bush", OBJ_BUSH);
+		float posX = (i < 10) ? -100 : -150;
+		float posY = (i < 10) ? -200 : -500;
+		bush.setPosition2D(posX, posY + (i * 35));
+	}
+
+
+
+	for(int i = 0; i < 6; i++) {
+		GameObject& gasBomb = createObject("GasBomb" + to_string(i), OBJ_GAS_BOMB);
+		float posX = (i < 3) ? 175 : 100;
+		float posY = (i < 3) ? 25 : 0;
+		gasBomb.setPosition2D(posX + (i * 25), posY);
+	}
+
+
 
 #pragma region BILLBOARDS
-	//ÁRBOLES
+	//ï¿½RBOLES
 	GameBillboard& bill = createBillboard("A1", A_1);
 	GameBillboard& bill2 = createBillboard("A2", A_2);
 	GameBillboard& bill3 = createBillboard("A3", A_3);
@@ -27,7 +65,7 @@ void Game::start() {
 	bill6.size = 11;
 
 	//PERSONAS
-	//lo pensé para decorar la casa o a donde hay que entregar los muebles y que se vea a quien le entregamos los muebles
+	//lo pensï¿½ para decorar la casa o a donde hay que entregar los muebles y que se vea a quien le entregamos los muebles
 	GameBillboard& esposo = createBillboard("Esp", MARRIDO);
 	GameBillboard& esposa = createBillboard("Espa", MARIDA);
 	esposo.setPosition2D(20, 20);
