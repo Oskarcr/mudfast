@@ -16,8 +16,9 @@ ModeloRR* GameObject::getHandle() {
 
 void GameObject::render() {
 	if (hide) return;
+	normalizeRotation();
 
-	Camara* camara = game.getCamera();
+	Camara* camara = game.camera.getHandle();
 	float* hrotation = new float[3] { 
 		rotation.x * (PI / 180.0f),
 		rotation.y * (PI / 180.0f),
@@ -66,5 +67,12 @@ GameObject& GameObject::move2D(Vector2 direction2D) {
 	direction2D = direction2D.normalize();
 	Vector2 offset2D = direction2D * speed;
 	translate2D(offset2D);
+	return *this;
+}
+
+GameObject& GameObject::normalizeRotation() {
+	rotation.x = fmod(rotation.x, 360.0f);
+	rotation.y = fmod(rotation.y, 360.0f);
+	rotation.z = fmod(rotation.z, 360.0f);
 	return *this;
 }

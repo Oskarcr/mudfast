@@ -9,12 +9,11 @@ class Game;
 extern Game game;
 
 #include "Entity.h"
-#include "TerrenoRR.h"
-#include "Camara.h"
 
 #include "GamePlayer.h"
 #include "GameObject.h"
 #include "GameBillboard.h"
+#include "GameCamera.h"
 
 #include "Vectors.h"
 #include <Windows.h>
@@ -23,10 +22,10 @@ extern Game game;
 #include <chrono>
 
 #include <iostream>
-#include <iomanip>
 
 class GameObject;
 class GameBillboard;
+class GameCamera;
 
 enum EntityType {
 	OBJ_CAR_DEFAULT,
@@ -61,7 +60,6 @@ private:
 
 	ID3D11Device* d3dDevice = nullptr;
 	ID3D11DeviceContext* d3dContext = nullptr;
-	Camara * camera = nullptr;
 	TerrenoRR* land = nullptr;
 
 	map<string, GameObject*> objects;
@@ -77,18 +75,18 @@ public:
 
 		// Movimiento x y z
 		float sprintMultiplier = 1.5f;
-		float speedFront = 0.014f;
-		float speedLeftRight = 0.012f;
-		float speedBack = 0.01f;
+		float speedFront = 42;
+		float speedLeftRight = 36;
+		float speedBack = 30;
 
 		// Movimiento del mouse
-		float mouseSensitivity = 0.05f;
+		float mouseSensitivity = 0.026f;
 		float mouseDeltaThreshold = 10.0f;
 		float maxAngleX = 40.0f;
 		float offsetAngleX = 10.0f;
 
 		// Deshabilitar el input
-		// float inputEnabled = true;
+		float inputEnabled = true;
 	};
 
 	Settings settings;
@@ -102,9 +100,17 @@ public:
 	// El volumen general del juego.
 	float volume = 1.0f;
 
+	// Si esta en modo test no cargara los modelos.
+	bool testMode = false;
+
+	// Si esta en modo debug la pantalla se hara chica.
+	bool debugMode = false;
+
 	// El reproductor de musica.
 	GamePlayer player = GamePlayer();
 
+	// La camara del jugador.
+	GameCamera camera;
 
 	Game();
 	~Game();
@@ -143,9 +149,6 @@ public:
 	// Establece la variable camera.
 	void setCamera(Camara* _camera);
 
-	// Devuelve el puntero de la camara.
-	Camara* getCamera();
-
 	// Establece el terreno.
 	void setLand(TerrenoRR * _land);
 
@@ -157,6 +160,8 @@ public:
 
 	// Se llama despues de cada render del programa
 	void update();
+
+	void input(char* keyboardData);
 
 	// Se llama cada render del programa
 	void render();

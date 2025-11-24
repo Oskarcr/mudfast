@@ -157,8 +157,10 @@ dwrite.lib</AdditionalDependencies>
     <ClCompile Include="GameBillboard.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GamePlayer.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="loadModel.cpp" />
     <ClCompile Include="mini_audio.cpp" />
     <ClCompile Include="Start.cpp" />
@@ -176,6 +178,7 @@ dwrite.lib</AdditionalDependencies>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameBillboard.h" />
+    <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GamePadRR.h" />
     <ClInclude Include="GamePlayer.h" />

@@ -100,11 +100,7 @@ void Game::setDevice(ID3D11Device* _d3dDevice) {
 }
 
 void Game::setCamera(Camara* _camera) {
-	camera = _camera;
-}
-
-Camara* Game::getCamera() {
-	return camera;
+	camera = GameCamera(_camera, land);
 }
 
 void Game::setLand(TerrenoRR * _land) {
@@ -116,6 +112,9 @@ TerrenoRR* Game::getLand() {
 }
 
 void Game::render() {
+	setMousePosition(Vector2(game.getScreenSize().x / 2, game.getMousePosition().y));
+	saveMousePosition();
+	camera.render();
 	updateTime();
 	// No se toca, solo sera para renderizar
 	forEachObjects([](GameObject& gameObject) {

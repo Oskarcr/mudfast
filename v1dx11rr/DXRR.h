@@ -18,6 +18,9 @@
 
 #include "Game.h"
 
+#include <dinput.h>
+#include <xinput.h>
+
 class DXRR{	
 
 private:
@@ -71,7 +74,7 @@ public:
 	XACTINDEX cueIndex;
 	CXACT3Util m_XACT3;
 
-	Vector2 camRot = Vector2(0, 0);
+	LPDIRECTINPUTDEVICE8 m_pKeyboardDevice = NULL;
 	
     DXRR(HWND hWnd, int Ancho, int Alto)
 	{
@@ -102,9 +105,9 @@ public:
 		//
 		game.setContext(d3dContext);
 		game.setDevice(d3dDevice);
-		game.setCamera(camara);
 		game.setLand(terreno);
-		game.start();
+		game.setCamera(camara);
+		if(!game.testMode) game.start();
 
 		// model = new ModeloRR(d3dDevice, d3dContext, "Assets/Cofre/Cofre.obj", L"Assets/Cofre/Cofre-color.png", L"Assets/Cofre/Cofre-spec.png", 0, 0);
 		
@@ -347,9 +350,9 @@ public:
 		float clearColor[4] = { 0, 0, 0, 1.0f };
 		d3dContext->ClearRenderTargetView( backBufferTarget, clearColor );
 		d3dContext->ClearDepthStencilView( depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0 );
-		camara->posCam.y = terreno->Superficie(camara->posCam.x, camara->posCam.z) + 5 ;
+		//camara->posCam.y = terreno->Superficie(camara->posCam.x, camara->posCam.z) + 5 ;
 		//modificado
-		camara->UpdateCam(velFB, velRL, arriaba, izqder);
+		
 		skydome->Update(camara->vista, camara->proyeccion);
 
 		float camPosXZ[2] = { camara->posCam.x, camara->posCam.z };
@@ -402,7 +405,29 @@ public:
 
 		swapChain->Present( 1, 0 );
 
-		game.update();
+		//Vector2 offset = Vector2(0, 0);
+		Vector2 offset = Vector2(0, 0);
+		char keyboardData[256];
+		m_pKeyboardDevice->GetDeviceState(sizeof(keyboardData), (void*)&keyboardData);
+		game.input(keyboardData);
+		/*if (keyboardData[DIK_W] & 0x80) {
+			offset.y += game.settings.speedFront;
+		}
+		if (keyboardData[DIK_S] & 0x80) {
+			offset.y -= game.settings.speedBack;
+		}
+		if (keyboardData[DIK_D] & 0x80) {
+			offset.x += game.settings.speedLeftRight;
+		}
+		if (keyboardData[DIK_A] & 0x80) {
+			offset.x -= game.settings.speedLeftRight;
+		}
+		const float base_speed = (!(keyboardData[DIK_LSHIFT] & 0x80) ? 1 : game.settings.sprintMultiplier);
+		offset = (offset * game.deltaTime).normalize();
+		game.camera.translate2D(offset * base_speed);*/
+
+		// Update
+		if (!game.testMode) game.update();
 	}
 
 	bool isPointInsideSphere(float* point, float* sphere) {
