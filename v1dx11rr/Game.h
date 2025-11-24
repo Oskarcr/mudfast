@@ -12,6 +12,7 @@ extern Game game;
 #include "TerrenoRR.h"
 #include "Camara.h"
 
+#include "GamePlayer.h"
 #include "GameObject.h"
 #include "GameBillboard.h"
 
@@ -87,6 +88,12 @@ public:
 
 	// El tiempo transcurrido.
 	float time = 0.f;
+
+	// El volumen general del juego.
+	float volume = 1.0f;
+
+	// El reproductor de musica.
+	GamePlayer player = GamePlayer();
 
 	// Devuelve un Vector2 con la posicion del mouse (x, y) en
 	// la pantalla entera.

@@ -22,6 +22,16 @@ float Entity::getAttribute(string name) {
 	return attributes[name];
 }
 
+int Entity::getIntAttribute(string name) {
+	if (!hasAttribute(name)) return 0;
+	return (int)attributes[name];
+}
+
+bool Entity::getBoolAttribute(string name) {
+	int value = getIntAttribute(name);
+	return value != 0;
+}
+
 bool Entity::hasAttribute(string name) {
 	auto it = attributes.find(name);
 	return it != attributes.end();
