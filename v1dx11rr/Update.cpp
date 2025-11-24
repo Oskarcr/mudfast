@@ -3,19 +3,25 @@
 void Game::update() {
 	// Es como el void Update de unity
 
-	GameBillboard& bill = getBillboardById("myBill");
-	float signo = bill.getAttribute("regresa") == 1 ? -1 : 1;
 
-	
 
-	bill.size += 0.2f * signo;
 
-	if (bill.size > 5) {
-		bill.setAttribute("regresa", 1);
-	}
-	if (bill.size < 1) {
-		bill.setAttribute("regresa", 0);
-	}
+
+
+#pragma region Comentarios de pruebas
+	//GameBillboard& bill = getBillboardById("myBill");
+	//float signo = bill.getAttribute("regresa") == 1 ? -1 : 1;
+
+	//
+
+	//bill.size += 0.2f * signo;
+
+	//if (bill.size > 5) {
+	//	bill.setAttribute("regresa", 1);
+	//}
+	//if (bill.size < 1) {
+	//	bill.setAttribute("regresa", 0);
+	//}
 
 	// Actualizamos la animacion cada 5 frames (NO SEGUNDOS)
 	/*
@@ -52,12 +58,15 @@ void Game::update() {
 
 	// Actualizamos la animacion cada 5 frames (NO SEGUNDOS)
 	float offsetY = bill.getAttribute("offsetY");
-	if (offsetY > 5) { 
+	if (offsetY > 5) {
 		bill.nextFrame();
 		bill.setAttribute("offsetY", 0);
 	}
 	else {
 		bill.setAttribute("offsetY", offsetY + 1);
 	}*/
+#pragma endregion
+
+	
 
 }
