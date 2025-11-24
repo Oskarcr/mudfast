@@ -13,6 +13,9 @@ public:
 	// La escala en tres ejes del objeto.
 	Vector3 scale = Vector3(1, 1, 1);
 
+	// Si el objeto esta oculto.
+	bool hide = false;
+
 	GameObject(ModeloRR* _handle);
 
 	~GameObject();

@@ -15,6 +15,8 @@ ModeloRR* GameObject::getHandle() {
 }
 
 void GameObject::render() {
+	if (hide) return;
+
 	Camara* camara = game.getCamera();
 	float* hrotation = new float[3] { 
 		rotation.x * (PI / 180.0f),

@@ -13,6 +13,8 @@ BillboardRR* GameBillboard::getHandle() {
 }
 
 void GameBillboard::render() {
+	if (hide) return;
+
 	Camara* camara = game.getCamera();
 	Vector2 frameMinUV = getFrameMinUV();
 	Vector2 frameMaxUV = getFrameMaxUV();

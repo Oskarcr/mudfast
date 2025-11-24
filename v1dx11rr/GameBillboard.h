@@ -15,6 +15,9 @@ public:
 	// El tamano del billboard.
 	float size = 1;
 
+	// Si el billboard esta oculto.
+	bool hide = false;
+
 	GameBillboard(BillboardRR * _handle);
 	~GameBillboard();
 
