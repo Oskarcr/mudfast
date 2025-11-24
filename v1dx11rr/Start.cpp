@@ -49,10 +49,6 @@ void Game::start() {
 	caas.scale = Vector3(3, 3, 3);
 	caas.rotation = Vector3(0, 90, 0);
 
-	GameObject& tiend = createObject("GasShop", SHOP_1);
-	tiend.setPosition2D(0, 60);
-	tiend.scale = Vector3(0.1, 0.1, 0.1);
-	tiend.rotation = Vector3(0, 90, 0);
 #pragma endregion
 
 	
@@ -137,7 +133,18 @@ void Game::start() {
 	esposa.size = 3;
 #pragma endregion
 
-#pragma region MODELOS
+#pragma region UI
+	// Timer
+	GameBillboard& minuteR = createBillboard("minuteR", N_0);
+	GameBillboard& minuteL = createBillboard("minuteL", N_0);
+	GameBillboard& hourR = createBillboard("hourR", N_7);
+	GameBillboard& hourL = createBillboard("hourL", N_0);
+
+	minuteR.setPosition(0, 0, 20);
+	minuteL.setPosition(-4, 0, 20);
+	hourR.setPosition(-8, 0, 20);
+	hourL.setPosition(-12, 0, 20);
+
 
 #pragma endregion
 

@@ -52,7 +52,16 @@ enum EntityType {
 	MARRIDO,
 	MARIDA,
 	CASA_1,
-	SHOP_1
+	N_1,
+	N_2,
+	N_3,
+	N_4,
+	N_5,
+	N_6,
+	N_7,
+	N_8,
+	N_9,
+	N_0,
 };
 
 using namespace chrono;
