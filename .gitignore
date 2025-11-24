@@ -1,0 +1,12 @@
+# Ignorar todo el contenido dentro de la carpeta .vs
+.vs/*
+.vs/**/
+
+# Ignorar todo el contenido dentro de la carpeta x64
+x64/*
+x64/**/
+
+# Ignorar el v1dx11rr/x64
+
+v1dx11rr/x64/*
+v1dx11rr/x64/**/

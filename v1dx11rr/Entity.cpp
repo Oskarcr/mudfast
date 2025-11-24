@@ -1,0 +1,28 @@
+#include "Entity.h"
+
+Vector2 Entity::getPosition2D() {
+	return Vector2(position.x, position.z);
+}
+
+Entity& Entity::setPosition(Vector3 _position) {
+	position = _position;
+	return *this;
+}
+
+Entity& Entity::setPosition(float _x, float _y, float _z) {
+	return setPosition(Vector3(_x, _y, _z));
+}
+
+void Entity::setAttribute(string name, float value) {
+	attributes[name] = value;
+}
+
+float Entity::getAttribute(string name) {
+	if (!hasAttribute(name)) return 0;
+	return attributes[name];
+}
+
+bool Entity::hasAttribute(string name) {
+	auto it = attributes.find(name);
+	return it != attributes.end();
+}

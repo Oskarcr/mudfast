@@ -1,0 +1,22 @@
+# Blender 4.5.3 LTS MTL File: 'Mattress.blend'
+# www.blender.org
+
+newmtl 03_-_Default
+Ns 20.000006
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Seamless_snow_texture.jpg
+
+newmtl 07_-_Default
+Ns 20.000006
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Seamless_snow_texture.jpg
