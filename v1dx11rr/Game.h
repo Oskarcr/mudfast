@@ -48,8 +48,9 @@ enum EntityType {
 	A_2,
 	A_3,
 	MARRIDO,
-	MARIDA/*,
-	C_UNO*/
+	MARIDA,
+	CASA_1,
+	SHOP_1
 };
 
 using namespace chrono;

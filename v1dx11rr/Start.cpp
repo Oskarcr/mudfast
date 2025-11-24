@@ -2,6 +2,8 @@
 
 void Game::start() {
 	// Es como del void Start de unity
+
+#pragma region MODELOS
 	GameObject& van = createObject("Van", OBJ_CAR_VAN);
 	van.setPosition2D(30, -240);
 
@@ -30,14 +32,27 @@ void Game::start() {
 		bush.setPosition2D(posX, posY + (i * 35));
 	}
 
-
-
-	for(int i = 0; i < 6; i++) {
+	for (int i = 0; i < 6; i++) {
 		GameObject& gasBomb = createObject("GasBomb" + to_string(i), OBJ_GAS_BOMB);
 		float posX = (i < 3) ? 175 : 100;
 		float posY = (i < 3) ? 25 : 0;
 		gasBomb.setPosition2D(posX + (i * 25), posY);
 	}
+
+
+	//casas y tienda
+	GameObject& caas = createObject("Casa", CASA_1);
+	caas.setPosition2D(100, 60);
+	caas.scale = Vector3(3, 3, 3);
+	caas.rotation = Vector3(0, 90, 0);
+
+	GameObject& tiend = createObject("GasShop", SHOP_1);
+	tiend.setPosition2D(0, 60);
+	tiend.scale = Vector3(0.1, 0.1, 0.1);
+	tiend.rotation = Vector3(0, 90, 0);
+#pragma endregion
+
+	
 
 
 

@@ -215,9 +215,12 @@ string Game::getAssetNameByEntityType(EntityType type) {
 	case MARIDA:
 		result = "Sabrina";
 		break;
-	//case C_UNO: //CASA
-	//	result = "";
-	//	break;
+	case CASA_1: //CASA
+		result = "House1";
+		break;
+	case SHOP_1:
+		result = "TiendaGas";
+		break;
 	}
 	return result;
 }
