@@ -16,6 +16,12 @@ ModeloRR* GameObject::getHandle() {
 
 void GameObject::render() {
 	Camara* camara = game.getCamera();
+	float* hrotation = new float[3] { 
+		rotation.x * (PI / 180.0f),
+		rotation.y * (PI / 180.0f),
+		rotation.z * (PI / 180.0f)
+	};
+	float* hscale = new float[3] { scale.x, scale.y, scale.z };
 	handle->Draw(
 		camara->vista, 
 		camara->proyeccion, 
@@ -23,12 +29,13 @@ void GameObject::render() {
 		position.z, 
 		position.y, 
 		camara->posCam, 
-		10.0f, 
-		0.f, 
-		'Y',
-		1.0f,
+		10.0f,
+		hrotation, 
+		hscale,
 		1.0f
 	);
+	delete[] hscale;
+	delete[] hrotation;
 }
 
 GameObject& GameObject::setPosition2D(Vector2 _position) {
@@ -40,4 +47,9 @@ GameObject& GameObject::setPosition2D(Vector2 _position) {
 
 GameObject& GameObject::setPosition2D(float _x, float _y) {
 	return setPosition2D(Vector2(_x, _y));
+}
+
+GameObject& GameObject::setScale(float _scale) {
+	scale = Vector3(_scale, _scale, _scale);
+	return *this;
 }

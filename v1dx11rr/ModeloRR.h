@@ -381,8 +381,7 @@ public:
 	}
 
 	float rotation = 0.0f;
-	void Draw(D3DXMATRIX vista, D3DXMATRIX proyeccion, float xpos, float zpos, float ypos, D3DXVECTOR3 posCam, float specForce, float rot, 
-		char angle, float scale, float luzFactor) //factor de luz para día y noche LUZFACOR
+	void Draw(D3DXMATRIX vista, D3DXMATRIX proyeccion, float xpos, float zpos, float ypos, D3DXVECTOR3 posCam, float specForce, float* rotation, float* scale, float luzFactor) //factor de luz para día y noche LUZFACOR
 	{
 		//modelos girando XD
 		// 
@@ -414,21 +413,21 @@ public:
 
 		d3dContext->PSSetSamplers(0, 1, &colorMapSampler);
 
+		
+		//D3DXMatrixRotationYawPitchRoll(&rotationMat, rotation, 0.0f, 0.0f);
+		D3DXMATRIX translationMat;
+
+		D3DXMatrixTranslation(&translationMat, xpos, ypos, zpos);
+
 		//mueve la camara
 		D3DXMATRIX rotationMat;
-		D3DXMatrixRotationYawPitchRoll(&rotationMat, rotation, 0.0f, 0.0f);
-		D3DXMATRIX translationMat;
-		D3DXMatrixTranslation(&translationMat, xpos, ypos, zpos);
-		if(angle == 'X')
-			D3DXMatrixRotationX(&rotationMat, rot);
-		else if (angle == 'Y')
-			D3DXMatrixRotationY(&rotationMat, rot);
-		else if (angle == 'Z')
-			D3DXMatrixRotationZ(&rotationMat, rot);
+		// D3DXMatrixRotationYawPitchRoll(&);
+		D3DXMatrixRotationYawPitchRoll(&rotationMat, rotation[1], rotation[0], rotation[2]);
+
 		viewMatrix *= rotationMat;
 
 		D3DXMATRIX scaleMat;
-		D3DXMatrixScaling(&scaleMat, scale,scale,scale);
+		D3DXMatrixScaling(&scaleMat, scale[0], scale[1], scale[2]);
 
 		D3DXMATRIX worldMat = rotationMat * scaleMat * translationMat;
 		D3DXMatrixTranspose(&worldMat, &worldMat);

@@ -11,13 +11,7 @@ private:
 	unordered_map<string, float> attributes;
 public:
 	// La posicion en tres ejes de la Entity en el espacio y tiempo.
-	Vector3 position = Vector3(0.0f, 0.0f, 0.0f);
-
-	// La rotacion en tres ejes de la Entity.
-	//Vector3 rotation = Vector3(0.0f, 180.0f, 0.0f);
-
-	// La escala en tres ejes de la Entity.
-	//Vector3 scale = Vector3(1.0f, 1.0f, 1.0f);
+	Vector3 position = Vector3(0, 0, 0);
 
 	// Devuelve un Vector2 con las coordenadas (x, z) correspondientes.
 	Vector2 getPosition2D();

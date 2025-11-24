@@ -109,7 +109,7 @@ inline void AnimationManager::apply(D3DXMATRIX vista, D3DXMATRIX proyeccion, D3D
                 std::cout << "¡Has ganado! ";
             }
         }
-
+        /*
         model->Draw(
             vista,
             proyeccion,
@@ -122,7 +122,7 @@ inline void AnimationManager::apply(D3DXMATRIX vista, D3DXMATRIX proyeccion, D3D
             'Y',
             1.0f,
             0.5f
-        );
+        );*/
 
         //DrawWireBox(modelCollider.min, modelCollider.max, vista, proyeccion, camPos, D3DXCOLOR(1, 0, 0, 1));
     }
