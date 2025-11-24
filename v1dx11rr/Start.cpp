@@ -8,7 +8,7 @@ void Game::start() {
 	van.setPosition2D(30, -240);
 
 	GameObject& car = createObject("Car", OBJ_CAR_DEFAULT);
-	car.setPosition2D(-30, 240);
+	car.setPosition2D(-20, 240);
 
 	GameObject& policeCar = createObject("PoliceCar", OBJ_POLICE_CAR);
 	policeCar.setPosition2D(-30, 0);
@@ -43,11 +43,60 @@ void Game::start() {
 	}
 
 
-	//casas y tienda
+	//CASAS 
 	GameObject& caas = createObject("Casa", CASA_1);
 	caas.setPosition2D(100, 60);
 	caas.scale = Vector3(3, 3, 3);
 	caas.rotation = Vector3(0, 90, 0);
+	GameObject& caas1 = createObject("Casa2", CASA_2);
+	caas1.setPosition2D(50, 70);
+	caas1.scale = Vector3(1.5, 1.5, .5);
+	caas1.rotation = Vector3(0, 90, 0);
+
+	//TIONDA
+	GameObject& tiend = createObject("GasShop", SHOP_1);
+	tiend.setPosition2D(170, 60);
+	tiend.scale = Vector3(3, 3, 3);
+	tiend.rotation = Vector3(0, 90, 0);
+
+	//ALMACENES
+	GameObject& alma2 = createObject("Almacen2", ALMACEN_2);
+	alma2.setPosition2D(170, -50);
+	alma2.scale = Vector3(3, 3, 3);
+	GameObject& alma = createObject("Almacen1", ALMACEN_1);
+	alma.setPosition2D(-220, 200);
+	alma.scale = Vector3(7, 5, 7);
+
+	//EXPLORABLE
+	GameObject& explo = createObject("Explorable1", EXPLORABLE_1); 
+	explo.setPosition2D(200, -200);
+	explo.scale = Vector3(5, 5, 5);
+	explo.rotation = Vector3(0, 180, 0);
+
+	//señales de tráfico y cosas de la calle
+	GameObject& sinal1 = createObject("Deadend", DEAD_SIG);	//no sé si deberíamos poner ids distintos, por si acaso lo dejé igual
+	sinal1.setPosition2D(30, 200);
+	sinal1.scale = Vector3(3, 6, 3);
+	sinal1.rotation = Vector3(0, 180, 0);
+	GameObject& sinal2 = createObject("Deadend", DEAD_SIG);
+	sinal2.setPosition2D(30, -250);
+	sinal2.scale = Vector3(3, 6, 3);
+	sinal2.rotation = Vector3(0, 0, 0);
+	GameObject& sinal3 = createObject("Deadend", DEAD_SIG);
+	sinal3.setPosition2D(200, -80);
+	sinal3.scale = Vector3(3, 6, 3);
+	sinal3.rotation = Vector3(0, -90, 0);
+
+	//LUCES DE LA CALLE
+	//GameObject& luz = createObject("luzcalle", STREET_L);
+	for (int i = 0; i < 7; i++) {
+		GameObject& luz = createObject("luzcalle" + to_string(i), STREET_L);
+		luz.setPosition2D(-30, -240 + (i * 75));
+		luz.scale = Vector3(2, 4, 2);
+	}
+	//luz.setPosition2D(-30, 0);
+	//luz.scale = Vector3(2, 4, 2);
+
 
 #pragma endregion
 
