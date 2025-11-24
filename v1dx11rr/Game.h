@@ -52,6 +52,12 @@ enum EntityType {
 	MARRIDO,
 	MARIDA,
 	CASA_1,
+	CASA_2,
+	DEAD_SIG,
+	STREET_L,
+	ALMACEN_1,
+	ALMACEN_2,
+	EXPLORABLE_1,
 	SHOP_1
 };
 
