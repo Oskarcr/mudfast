@@ -39,7 +39,13 @@ enum EntityType {
 	BILL_OBJETIVE,
 	BILL_FIRE,
 	BILL_EXPLOSION,
-	BILL_CAT_CHAD
+	BILL_CAT_CHAD,
+	A_1,			//ÁRBOLES
+	A_2,
+	A_3,
+	MARRIDO,
+	MARIDA/*,
+	C_UNO*/
 };
 
 using namespace chrono;
