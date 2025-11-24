@@ -30,6 +30,7 @@ class GameBillboard;
 
 enum EntityType {
 	OBJ_CAR_DEFAULT,
+	OBJ_POLICE_CAR,
 	OBJ_CAR_VAN,
 	OBJ_BOX_SMALL,
 	OBJ_BOX_MEDIUM,
@@ -47,6 +48,7 @@ enum EntityType {
 	A_1,			//ÁRBOLES
 	A_2,
 	A_3,
+	BILL_BUSH,
 	MARRIDO,
 	MARIDA,
 	CASA_1,
