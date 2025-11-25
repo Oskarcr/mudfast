@@ -2,9 +2,24 @@
 
 void Game::update() {
 
-	Game::time;
+	Game::time = +deltaTime;
 
-	int totalSeconds = (int)Game::time;
+	int totalSeconds = (int)time;
+
+	int uMinuto = time;
+	int dMinuto = time;
+	int uHora = time;
+	int dHora = time;
+
+	GameBillboard& minuteR = getBillboardById("minuteR");
+	GameBillboard& minuteL = getBillboardById("minuteL");
+	GameBillboard& hourR = getBillboardById("hourR");
+	GameBillboard& hourL = getBillboardById("hourL");
+
+	getBillboardById("minuteR").setAttribute("digitR", uMinuto);
+	getBillboardById("minuteL").setAttribute("digitL", dMinuto);
+	getBillboardById("hourR").setAttribute("digitR2", uHora);
+	getBillboardById("hourL").setAttribute("digitL2", dHora);
 
 	int minutes = totalSeconds / 60;
 	int hours = minutes / 60;
@@ -14,7 +29,6 @@ void Game::update() {
 
 	int hour_R = hours % 10;
 	int hour_L = (hours / 10) % 10;
-
 
 	GameObject& carromoviendose = getObjectById("Car");
 
