@@ -92,6 +92,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
     // Set the position of the window to the top left corner.
     posX = posY = 0;
 
+    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+
     //RECT wr = {0, 0, SCREEN_X, SCREEN_Y};
     //AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);
     hWnd = CreateWindowEx(WS_EX_APPWINDOW,
@@ -100,15 +103,23 @@ int WINAPI WinMain(HINSTANCE hInstance,
                           WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP,
         posX,
         posY,
-        SCREEN_X,
-        SCREEN_Y,
+        (game.debugMode ? 100 : screenWidth),
+        (game.debugMode ? 100 : (int)((float)screenWidth * (3.f / 4.f))), // 3/4 de aspect ratio
                           NULL,
                           NULL,
                           hInstance,
                           NULL);
 
     ShowWindow(hWnd, nCmdShow);
-	dxrr = new DXRR(hWnd, 800, 600);
+
+    RECT rect;
+    GetWindowRect(hWnd, &rect);
+    int windowHeight = rect.bottom - rect.top;
+    int newY = (screenHeight - windowHeight) / 2;
+    int newX = rect.left;
+    SetWindowPos(hWnd, NULL, newX, newY, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+
+	dxrr = new DXRR(hWnd, screenWidth, screenHeight);
 	dxrr->velFB=0;
     gamePad = new GamePadRR(1);
 
@@ -134,6 +145,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
                 break;
         }
 
+        dxrr->m_pKeyboardDevice = m_pKeyboardDevice;
         dxrr->Render();
     }
 
@@ -186,81 +198,8 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
             if (dxrr->frameBillboard == 32)
                 dxrr->frameBillboard = 0;
 
-            //dxrr->izqder = 0;
-            //dxrr->arriaba = 0;
-            dxrr->velFB = 0;
-
             char keyboardData[256];
             m_pKeyboardDevice->GetDeviceState(sizeof(keyboardData), (void*)&keyboardData);
-
-            //Vector2 offset = Vector2(0, 0);
-            Vector2 offset = Vector2(0, 0);
-          
-            if (keyboardData[DIK_W] & 0x80) {
-                offset.y += game.settings.speedFront;
-            }
-
-            if (keyboardData[DIK_S] & 0x80) {
-                offset.y -= game.settings.speedBack;
-            }
-
-            if (keyboardData[DIK_D] & 0x80) {
-                offset.x += game.settings.speedLeftRight;
-            }
-
-            if (keyboardData[DIK_A] & 0x80) {
-                offset.x -= game.settings.speedLeftRight;
-            }
-
-            const float base_speed = 2.2f * (!(keyboardData[DIK_LSHIFT] & 0x80) ? 1 : 1.4);
-
-            offset = offset.normalize() * base_speed;
-
-            dxrr->velRL = -offset.x;
-            dxrr->velFB = offset.y;
-
-            if (keyboardData[DIK_B] & 0x80) {
-                dxrr->breakpoint = true;
-            }
-
-            if (keyboardData[DIK_ESCAPE] & 0x80) {
-                KillTimer(hWnd, 100);
-                PostQuitMessage(0);
-                return 0;
-            }
-
-            //DIMOUSESTATE mouseData;
-            //m_pMouseDevice->GetDeviceState(sizeof(mouseData), (void*)&mouseData);
-
-            /*
-            Vector2 screenSize = game.getScreenSize();
-
-            game.setMousePosition(Vector2(screenSize.x / 2, game.getMousePosition().y));
-            game.saveMousePosition();
-
-            Vector2 mousePos = game.getMouseDeltaPosition();
-
-            float mouseDeltaX = mousePos.x;
-            if (mouseDeltaX > game.settings.mouseDeltaThreshold || mouseDeltaX < -game.settings.mouseDeltaThreshold) {
-                dxrr->camRot.x += mousePos.x * -(game.settings.mouseSensitivity);
-            }
-
-            dxrr->camRot.y += mousePos.y * -game.settings.mouseSensitivity;
-            dxrr->camRot.y = clampf(dxrr->camRot.y, -game.settings.maxAngleX, game.settings.maxAngleX);
-
-            // Mouse move
-            //dxrr->izqder = (mouseData.lX / 1000.0f);
-            //dxrr->arriaba = -(mouseData.lY / 1000.0f);
-            */
-            Vector2 screenSize = game.getScreenSize();
-
-            game.setMousePosition(Vector2(screenSize.x / 2, game.getMousePosition().y));
-
-            DIMOUSESTATE mouseData;
-            m_pMouseDevice->GetDeviceState(sizeof(mouseData), (void*)&mouseData);
-
-            dxrr->izqder = (mouseData.lX / 1000.0f) * 0.6;
-            dxrr->arriaba = -(mouseData.lY / 1000.0f) * 0.9;
 
             if (gamePad->IsConnected())
             {

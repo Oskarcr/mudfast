@@ -18,6 +18,9 @@
 
 #include "Game.h"
 
+#include <dinput.h>
+#include <xinput.h>
+
 class DXRR{	
 
 private:
@@ -71,7 +74,7 @@ public:
 	XACTINDEX cueIndex;
 	CXACT3Util m_XACT3;
 
-	Vector2 camRot = Vector2(0, 0);
+	LPDIRECTINPUTDEVICE8 m_pKeyboardDevice = NULL;
 	
     DXRR(HWND hWnd, int Ancho, int Alto)
 	{
@@ -86,29 +89,30 @@ public:
 		swapChain = 0;
 		backBufferTarget = 0;
 		IniciaD3D(hWnd);
-
+		
 		//imagen de victoria
 		hudVictory = new StaticBillboard(L"Assets/HUD/Slime.png", d3dDevice, d3dContext, 100.0f);
 
 
 
-		izqder = 0;
+		/*izqder = 0;
 		arriaba = 0;
-		billCargaFuego();
+		billCargaFuego();*/
 		camara = new Camara(D3DXVECTOR3(0,80,6), D3DXVECTOR3(0,80,0), D3DXVECTOR3(0,1,0), Ancho, Alto);
 		terreno = new TerrenoRR(600, 600, d3dDevice, d3dContext);
 		skydome = new SkyDome(32, 32, 100.0f, &d3dDevice, &d3dContext, L"SkyDome.png");
-		billboard = new BillboardRR(L"Assets/Billboards/fuego-anim.png",L"Assets/Billboards/fuego-anim-normal.png", d3dDevice, d3dContext, 5);
+		// billboard = new BillboardRR(L"Assets/Billboards/fuego-anim.png",L"Assets/Billboards/fuego-anim-normal.png", d3dDevice, d3dContext, 5);
 		//
 		game.setContext(d3dContext);
 		game.setDevice(d3dDevice);
-		game.setCamera(camara);
 		game.setLand(terreno);
-		game.start();
+		game.setCamera(camara);
+		if (!game.testMode) game.start();
+		else game.test();
 
 		// model = new ModeloRR(d3dDevice, d3dContext, "Assets/Cofre/Cofre.obj", L"Assets/Cofre/Cofre-color.png", L"Assets/Cofre/Cofre-spec.png", 0, 0);
 		
-		string modelsName[10] = {
+		/*string modelsName[10] = {
 			"Sofa", "Car", "Bush", "DiningTable", "Mattress",
 			"Van", "FridgeCocaCola", "BoxB", "BoxM", "BoxS"
 		};
@@ -165,7 +169,7 @@ public:
 			}
 
 			animMgr.addModel(model, anim);
-		}
+		}*/
 	}
 
 	~DXRR()
@@ -347,9 +351,9 @@ public:
 		float clearColor[4] = { 0, 0, 0, 1.0f };
 		d3dContext->ClearRenderTargetView( backBufferTarget, clearColor );
 		d3dContext->ClearDepthStencilView( depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0 );
-		camara->posCam.y = terreno->Superficie(camara->posCam.x, camara->posCam.z) + 5 ;
+		//camara->posCam.y = terreno->Superficie(camara->posCam.x, camara->posCam.z) + 5 ;
 		//modificado
-		camara->UpdateCam(velFB, velRL, arriaba, izqder);
+		
 		skydome->Update(camara->vista, camara->proyeccion);
 
 		float camPosXZ[2] = { camara->posCam.x, camara->posCam.z };
@@ -360,16 +364,8 @@ public:
 
 		terreno->Draw(camara->vista, camara->proyeccion);
 		//TurnOnAlphaBlending();
-		billboard->Draw(camara->vista, camara->proyeccion, camara->posCam,
-			-11, -78, 4, 5, *uv1, *uv2, *uv3, *uv4);
-
-		//TurnOffAlphaBlending();
-		// model->Draw(camara->vista, camara->proyeccion, terreno->Superficie(100, 20), camara->posCam, 10.0f, 0, 'A', 1);
-
-		//////////////// DIBUJADO DE LOS MODELOS /////////////////
-		//for (int i = 0; i < models.size(); i++) {
-		//	models[i]->Draw(camara->vista, camara->proyeccion, terreno->Superficie(100, 20), camara->posCam, 10.0f, 0, 'A', 1);
-		//}
+		//billboard->Draw(camara->vista, camara->proyeccion, camara->posCam,
+		//	-11, -78, 4, 5, *uv1, *uv2, *uv3, *uv4);
 
 		game.render();
 
@@ -402,7 +398,14 @@ public:
 
 		swapChain->Present( 1, 0 );
 
-		game.update();
+		//Vector2 offset = Vector2(0, 0);
+		Vector2 offset = Vector2(0, 0);
+		char keyboardData[256];
+		m_pKeyboardDevice->GetDeviceState(sizeof(keyboardData), (void*)&keyboardData);
+		game.input(keyboardData);
+
+		// Update
+		if (!game.testMode) game.update();
 	}
 
 	bool isPointInsideSphere(float* point, float* sphere) {

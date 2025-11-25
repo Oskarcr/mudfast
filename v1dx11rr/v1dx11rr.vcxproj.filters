@@ -81,6 +81,9 @@
     <ClInclude Include="GamePlayer.h">
       <Filter>Encabezado de juego</Filter>
     </ClInclude>
+    <ClInclude Include="GameCamera.h">
+      <Filter>Encabezado de juego</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader.fx">
@@ -128,6 +131,15 @@
     </ClCompile>
     <ClCompile Include="mini_audio.cpp">
       <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCamera.cpp">
+      <Filter>Archivos de juego</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Archivos de juego</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Archivos de juego</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

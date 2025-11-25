@@ -41,4 +41,7 @@ public:
 	// Desplaza la entidad instantaneamente en una direccion mediante su speed tomando en cuenta la altura del terreno.
 	// Se desplazara "speed" unidades hacia "direction".
 	GameObject& move2D(Vector2 direction);
+
+	// Normaliza la rotacion de 0 - 360.
+	GameObject& normalizeRotation();
 };
