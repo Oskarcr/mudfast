@@ -187,15 +187,19 @@ void Game::start() {
 
 	GameBillboard& minuteR = createBillboard("minuteR", N_0);
 	GameBillboard& minuteL = createBillboard("minuteL", N_0);
-	GameBillboard& hourR = createBillboard("hourR", N_7);
+	GameBillboard& hourR = createBillboard("hourR", N_0);
 	GameBillboard& hourL = createBillboard("hourL", N_0);
-	minuteR.setAttribute("time", 0);
+	minuteR.setAttribute("digitR", 0);
+	minuteL.setAttribute("digitL", 0);
+	hourR.setAttribute("digitR2", 0);
+	hourL.setAttribute("digitL2", 0);
 
 	minuteR.setPosition(0, 0, 20);
 	minuteL.setPosition(-4, 0, 20);
 	hourR.setPosition(-8, 0, 20);
 	hourL.setPosition(-12, 0, 20);
 
+	Game::time;
 #pragma endregion
 
 
