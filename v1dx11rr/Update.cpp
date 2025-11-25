@@ -1,9 +1,21 @@
 #include "Game.h"
 
 void Game::update() {
-	// Es como el void Update de unity
 
-	
+	Game::time;
+
+	int totalSeconds = (int)Game::time;
+
+	int minutes = totalSeconds / 60;
+	int hours = minutes / 60;
+
+	int minute_R = minutes % 10;
+	int minute_L = (minutes / 10) % 10;
+
+	int hour_R = hours % 10;
+	int hour_L = (hours / 10) % 10;
+
+
 	GameObject& carromoviendose = getObjectById("Car");
 
 	float signo = carromoviendose.getAttribute("conducir") == 1 ? -1 : 1;

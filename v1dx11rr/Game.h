@@ -9,12 +9,11 @@ class Game;
 extern Game game;
 
 #include "Entity.h"
-#include "TerrenoRR.h"
-#include "Camara.h"
 
 #include "GamePlayer.h"
 #include "GameObject.h"
 #include "GameBillboard.h"
+#include "GameCamera.h"
 
 #include "Vectors.h"
 #include <Windows.h>
@@ -23,10 +22,10 @@ extern Game game;
 #include <chrono>
 
 #include <iostream>
-#include <iomanip>
 
 class GameObject;
 class GameBillboard;
+class GameCamera;
 
 enum EntityType {
 	OBJ_CAR_DEFAULT,
@@ -45,7 +44,7 @@ enum EntityType {
 	BILL_FIRE,
 	BILL_EXPLOSION,
 	BILL_CAT_CHAD,
-	A_1,			//ÁRBOLES
+	A_1,			//ï¿½RBOLES
 	A_2,
 	A_3,
 	BILL_BUSH,
@@ -64,7 +63,17 @@ enum EntityType {
 	PERSONA1,
 	PERSONA2,
 	PERSONA3,
-	PERSONA4
+	PERSONA4,
+	N_1,
+	N_2,
+	N_3,
+	N_4,
+	N_5,
+	N_6,
+	N_7,
+	N_8,
+	N_9,
+	N_0,
 };
 
 using namespace chrono;
@@ -76,7 +85,6 @@ private:
 
 	ID3D11Device* d3dDevice = nullptr;
 	ID3D11DeviceContext* d3dContext = nullptr;
-	Camara * camera = nullptr;
 	TerrenoRR* land = nullptr;
 
 	map<string, GameObject*> objects;
@@ -92,18 +100,18 @@ public:
 
 		// Movimiento x y z
 		float sprintMultiplier = 1.5f;
-		float speedFront = 0.014f;
-		float speedLeftRight = 0.012f;
-		float speedBack = 0.01f;
+		float speedFront = 32;
+		float speedLeftRight = 28;
+		float speedBack = 24;
 
 		// Movimiento del mouse
-		float mouseSensitivity = 0.05f;
+		float mouseSensitivity = 0.028f;
 		float mouseDeltaThreshold = 10.0f;
 		float maxAngleX = 40.0f;
 		float offsetAngleX = 10.0f;
 
 		// Deshabilitar el input
-		// float inputEnabled = true;
+		float inputEnabled = true;
 	};
 
 	Settings settings;
@@ -117,9 +125,17 @@ public:
 	// El volumen general del juego.
 	float volume = 1.0f;
 
+	// Si esta en modo test no cargara los modelos.
+	bool testMode = false;
+
+	// Si esta en modo debug la pantalla se hara chica.
+	bool debugMode = false;
+
 	// El reproductor de musica.
 	GamePlayer player = GamePlayer();
 
+	// La camara del jugador.
+	GameCamera camera;
 
 	Game();
 	~Game();
@@ -158,9 +174,6 @@ public:
 	// Establece la variable camera.
 	void setCamera(Camara* _camera);
 
-	// Devuelve el puntero de la camara.
-	Camara* getCamera();
-
 	// Establece el terreno.
 	void setLand(TerrenoRR * _land);
 
@@ -170,8 +183,15 @@ public:
 	// Se llama cuando el programa esta preparado para que inicie.
 	void start();
 
+	// Se llama cuando inicia el programa en modo test.
+	void test();
+
 	// Se llama despues de cada render del programa
 	void update();
+
+	// Se llama despues de render y antes de update.
+	// Es para el input.
+	void input(char* keyboardData);
 
 	// Se llama cada render del programa
 	void render();

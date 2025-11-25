@@ -324,7 +324,7 @@ public:
 		return true;
 	}
 
-	bool UnloadContent()
+	void UnloadContent()
 	{
 		if (colorMapSampler)
 			colorMapSampler->Release();

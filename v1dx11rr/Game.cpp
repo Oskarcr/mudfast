@@ -100,11 +100,7 @@ void Game::setDevice(ID3D11Device* _d3dDevice) {
 }
 
 void Game::setCamera(Camara* _camera) {
-	camera = _camera;
-}
-
-Camara* Game::getCamera() {
-	return camera;
+	camera = GameCamera(_camera, land);
 }
 
 void Game::setLand(TerrenoRR * _land) {
@@ -116,6 +112,9 @@ TerrenoRR* Game::getLand() {
 }
 
 void Game::render() {
+	setMousePosition(Vector2(game.getScreenSize().x / 2, game.getMousePosition().y));
+	saveMousePosition();
+	camera.render();
 	updateTime();
 	// No se toca, solo sera para renderizar
 	forEachObjects([](GameObject& gameObject) {
@@ -251,6 +250,36 @@ string Game::getAssetNameByEntityType(EntityType type) {
 	case SHOP_1:
 		result = "sklep-wizualiacja";
 		break;
+	case N_1:
+		result = "1";
+		break;
+	case N_2:
+		result = "2";
+		break;
+	case N_3:
+		result = "3";
+		break;
+	case N_4:
+		result = "4";
+		break;
+	case N_5:
+		result = "5";
+		break;
+	case N_6:
+		result = "6";
+		break;
+	case N_7:
+		result = "7";
+		break;
+	case N_8:
+		result = "8";
+		break;
+	case N_9:
+		result = "9";
+		break;
+	case N_0:
+		result = "0";
+		break;
 	case PERSONA1:
 		result = "Human1";
 		break;
@@ -263,7 +292,7 @@ string Game::getAssetNameByEntityType(EntityType type) {
 	case PERSONA4:
 		result = "Human4";
 		break;
-	}
+	}	
 	return result;
 }
 

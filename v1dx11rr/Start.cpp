@@ -205,7 +205,19 @@ void Game::start() {
 	persona4.size = 3;
 #pragma endregion
 
+#pragma region UI
+	// Timer;
 
+	GameBillboard& minuteR = createBillboard("minuteR", N_0);
+	GameBillboard& minuteL = createBillboard("minuteL", N_0);
+	GameBillboard& hourR = createBillboard("hourR", N_7);
+	GameBillboard& hourL = createBillboard("hourL", N_0);
+	minuteR.setAttribute("time", 0);
+
+	minuteR.setPosition(0, 0, 20);
+	minuteL.setPosition(-4, 0, 20);
+	hourR.setPosition(-8, 0, 20);
+	hourL.setPosition(-12, 0, 20);
 
 
 
