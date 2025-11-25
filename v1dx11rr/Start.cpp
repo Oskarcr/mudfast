@@ -3,6 +3,8 @@
 void Game::start() {
 	// Es como del void Start de unity
 
+	player.setTheme("C418ConcreteHalls", 1.0f);
+
 #pragma region MODELOS
 	GameObject& van = createObject("Van", OBJ_CAR_VAN);
 	van.setPosition2D(30, -240);
