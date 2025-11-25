@@ -30,11 +30,26 @@ void Game::update() {
 	int hour_R = hours % 10;
 	int hour_L = (hours / 10) % 10;
 
-	GameObject& vanCamera = getObjectById("Van");
+	/// VEHICULO (logica)
 
-	vanCamera.position = camera.position;
-	camera.offset = Vector3(0, 5, -40);
-	vanCamera.rotation.y = camera.rotation.y;
+
+	GameObject& van = getObjectById("Van");
+	if (camera.getBoolAttribute("in_vehicle")) {
+		van.position = camera.position;
+		camera.offset = Vector3(0, 5, -40);
+		//van.rotation.y = camera.rotation.y;
+	}
+	else {
+		float length = (van.position - camera.position).magnitude();
+		camera.offset = Vector3(0, 0.04f, 0);
+		if (length < 16) {
+			camera.setAttribute("in_vehicle", true);
+			camera.position = van.position;
+			camera.rotation.y = van.rotation.y;
+		}
+	}
+
+	///
 
 	GameObject& carromoviendose = getObjectById("Car");
 

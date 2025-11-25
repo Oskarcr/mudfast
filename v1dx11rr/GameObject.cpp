@@ -76,3 +76,12 @@ GameObject& GameObject::normalizeRotation() {
 	rotation.z = fmod(rotation.z, 360.0f);
 	return *this;
 }
+
+Vector2 GameObject::getDirection2D() const {
+	float yawRad = rotation.y * (PI / 180.0f);
+	Vector2 temp;
+	temp.x = sinf(yawRad);
+	temp.y = cosf(yawRad);
+	Vector2 direction = temp.normalize();
+	return direction;
+}

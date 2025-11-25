@@ -103,6 +103,7 @@ public:
 		float speedFront = 32;
 		float speedLeftRight = 28;
 		float speedBack = 24;
+		float speedVehicle = 46;
 
 		// Movimiento del mouse
 		float mouseSensitivity = 0.028f;

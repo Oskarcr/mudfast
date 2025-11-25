@@ -44,4 +44,7 @@ public:
 
 	// Normaliza la rotacion de 0 - 360.
 	GameObject& normalizeRotation();
+
+	// Obtiene la direccion del GameObject.
+	Vector2 getDirection2D() const;
 };

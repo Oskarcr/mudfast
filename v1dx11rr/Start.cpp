@@ -5,6 +5,8 @@ void Game::start() {
 
 	player.setTheme("C418ConcreteHalls", 1.0f);
 
+	camera.setAttribute("in_vehicle", false);
+
 #pragma region MODELOS
 	GameObject& van = createObject("Van", OBJ_CAR_VAN);
 	van.setPosition2D(30, -240);
