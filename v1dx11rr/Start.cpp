@@ -225,6 +225,11 @@ void Game::start() {
 	Game::time;
 #pragma endregion
 
+#pragma region VISTA DE COCHE
+
+
+
+#pragma endregion
 
 
 

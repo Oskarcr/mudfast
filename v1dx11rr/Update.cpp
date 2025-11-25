@@ -30,6 +30,12 @@ void Game::update() {
 	int hour_R = hours % 10;
 	int hour_L = (hours / 10) % 10;
 
+	GameObject& vanCamera = getObjectById("Van");
+
+	vanCamera.position = camera.position;
+	camera.offset = Vector3(0, 5, -40);
+	vanCamera.rotation.y = camera.rotation.y;
+
 	GameObject& carromoviendose = getObjectById("Car");
 
 	float signo = carromoviendose.getAttribute("conducir") == 1 ? -1 : 1;
